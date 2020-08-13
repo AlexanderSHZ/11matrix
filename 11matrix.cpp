@@ -24,7 +24,11 @@ int main()
             printf("%d", mass[i][j]);
         }
     }
-    
+    for (int i = 0; i < rows; i++)
+    {
+        delete[] mass[i];
+    }
+    delete[] mass;
 }
 
 int** incomingData(int r, int c)
