@@ -1,25 +1,25 @@
 ﻿#include <iostream>
 #pragma warning(disable : 4996)
 
-int incomingData(int s, int c);
+int** incomingData(int r, int c);
 
 
 int main()
 {
-    int string, column;
+    int rows, column;
     
     printf("Enter number of strings \n");
-    scanf("%d", &string);
+    scanf("%d", &rows);
     printf("Enter number of columns \n");
     scanf("%d", &column);
 
 
 
-    int mass[] = incomingData(string, column);
+    int** mass = incomingData(rows, column);
 
-    for (int i = 0; i < string; i++)
+    for (int i = 0; i < rows; i++)
     {
-        for (int j = 0; j < string; j++)
+        for (int j = 0; j < column; j++)
         {
             printf("%d", mass[i][j]);
         }
@@ -27,18 +27,24 @@ int main()
     
 }
 
-int incomingData(int s, int c)
+int** incomingData(int r, int c)
 {
-    int matrix[] = (int*)malloc(sizeof(int) * s * c);
+   // int matrix[] = (int*)malloc(sizeof(int) * r * c);
+    
+    int** mat = new int*[r];
+    for (int i = 0; i < r; i++)
+    {
+        mat[i] = new int[c];
+    }
 
     printf("Enter numbers to the massive \n");
-    for (int i = 0; i < s; i++)
+    for (int i = 0; i < r; i++)
     {
         for (int j = 0; j < c; j++)
         {
-            matrix[i][j] = getchar();
+            mat[i][j] = getchar();
         }
     }
 
-    return matrix[s][c];
+    return mat;
 }
