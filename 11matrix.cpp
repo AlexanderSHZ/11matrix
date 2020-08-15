@@ -3,6 +3,7 @@
 
 int** incomingData(int r, int c);
 int* matRow(int r);
+int print(int r, int c, int** mass);
 
 int main()
 {
@@ -12,18 +13,11 @@ int main()
     scanf("%d", &rows);
     printf("Enter number of columns \n");
     scanf("%d", &column);
-
-
+    printf("Enter numbers to the massive \n");
 
     int** mass = incomingData(rows, column);
 
-    for (int i = 0; i < rows; i++)
-    {
-        for (int j = 0; j < column; j++)
-        {
-            printf("%d", mass[i][j]);
-        }
-    }
+    print(rows, column, mass);
    
     free(mass);
     return 0;
@@ -38,8 +32,6 @@ int** incomingData(int r, int c)
        printf("Program operation failed! \n");
     }
    
-    printf("Enter numbers to the massive \n");
-
     for (int i = 0; i < r; i++)
      {
         **matrix &= matRow(r);
@@ -66,4 +58,16 @@ int* matRow(int r)
        }
 
     return mat;
+}
+
+int print(int r, int c, int** mass)
+{
+    for (int i = 0; i < r; i++)
+    {
+        for (int j = 0; j < c; j++)
+        {
+            printf("%d", mass[i][j]);
+        }
+    }
+    return 0;
 }
