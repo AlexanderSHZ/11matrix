@@ -2,13 +2,13 @@
 #pragma warning(disable : 4996)
 
 int** incomingData(int r, int c);
-
+int* matRow(int r);
 
 int main()
 {
     int rows, column;
     
-    printf("Enter number of strings \n");
+    printf("Enter number of rows \n");
     scanf("%d", &rows);
     printf("Enter number of columns \n");
     scanf("%d", &column);
@@ -24,31 +24,46 @@ int main()
             printf("%d", mass[i][j]);
         }
     }
-    for (int i = 0; i < rows; i++)
-    {
-        delete[] mass[i];
-    }
-    delete[] mass;
+   
+    free(mass);
+    return 0;
 }
 
 int** incomingData(int r, int c)
 {
-   // int matrix[] = (int*)malloc(sizeof(int) * r * c);
-    
-    int** mat = new int*[r];
-    for (int i = 0; i < r; i++)
+   
+    int** matrix = (int**)malloc(sizeof(int) * r *c);
+    if (matrix == NULL)
     {
-        mat[i] = new int[c];
+       printf("Program operation failed! \n");
     }
-
+   
     printf("Enter numbers to the massive \n");
+
     for (int i = 0; i < r; i++)
-    {
+     {
+        **matrix &= matRow(r);
+
         for (int j = 0; j < c; j++)
         {
-            mat[i][j] = getchar();
+           scanf("%d", &matrix[i][j]);
+          
         }
-    }
+        
+          
+        
+     }
+
+     return matrix;
+}
+
+int* matRow(int r)
+{
+    int* mat = (int*)malloc(sizeof(int) * r);
+    if (mat == NULL)
+       {
+            printf("Program operation failed! \n");
+       }
 
     return mat;
 }
