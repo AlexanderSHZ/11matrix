@@ -2,28 +2,29 @@
 #pragma warning(disable : 4996)
 
 int** incomingData(int r, int c);
-int* matRow(int r);
+int* matRow(int с);
+int print(int r, int c, int** mass);
+
+struct MatrixSize
+{
+    int rows;
+    int column;
+};
 
 int main()
 {
-    int rows, column;
+    MatrixSize matrixSize;
+   
     
     printf("Enter number of rows \n");
-    scanf("%d", &rows);
+    scanf("%d", &matrixSize.rows);
     printf("Enter number of columns \n");
-    scanf("%d", &column);
+    scanf("%d", &matrixSize.column);
+    printf("Enter numbers to the massive \n");
 
+    int** mass = incomingData(matrixSize.rows, matrixSize.column);
 
-
-    int** mass = incomingData(rows, column);
-
-    for (int i = 0; i < rows; i++)
-    {
-        for (int j = 0; j < column; j++)
-        {
-            printf("%d", mass[i][j]);
-        }
-    }
+    print(matrixSize.rows, matrixSize.column, mass);
    
     free(mass);
     return 0;
@@ -32,21 +33,26 @@ int main()
 int** incomingData(int r, int c)
 {
    
-    int** matrix = (int**)malloc(sizeof(int) * r *c);
-    if (matrix == NULL)
+    int** matrix = NULL;
+    int** mat = (int**)malloc(sizeof(int) * r);
+    if (mat == NULL)
     {
        printf("Program operation failed! \n");
     }
+    mat = matrix;
+    for (int i = 0; i < c; i++)
+    {
+        matrix[i] = matRow(matrixSize.сolumn);
+    }
    
-    printf("Enter numbers to the massive \n");
-
     for (int i = 0; i < r; i++)
      {
-        **matrix &= matRow(r);
+        
 
         for (int j = 0; j < c; j++)
         {
-           scanf("%d", &matrix[i][j]);
+            
+            scanf("%d", &matrix[i][j]);
           
         }
         
@@ -57,13 +63,26 @@ int** incomingData(int r, int c)
      return matrix;
 }
 
-int* matRow(int r)
+int* matRow(int с)
 {
-    int* mat = (int*)malloc(sizeof(int) * r);
+    int* matrix = NULL;
+    int* mat = (int*)malloc(sizeof(int) * с);
     if (mat == NULL)
        {
             printf("Program operation failed! \n");
        }
+    mat = matrix;
+    return matrix;
+}
 
-    return mat;
+int print(int r, int c, int** mass)
+{
+    for (int i = 0; i < r; i++)
+    {
+        for (int j = 0; j < c; j++)
+        {
+            printf("%d", mass[i][j]);
+        }
+    }
+    return 0;
 }
