@@ -2,8 +2,9 @@
 #pragma warning(disable : 4996)
 
 int** incomingData(int r, int c);
-int* matRow(int r);
+//int* matRow(int r);
 int print(int r, int c, int** mass);
+
 
 int main()
 {
@@ -24,31 +25,45 @@ int main()
 
 int** incomingData(int r, int c)
 {
-    int** matrix = NULL;
-    int** mat = (int**)malloc(sizeof(int) * r);
-    if (mat == NULL)
+//    int* matRowPtr = NULL;
+
+    fflush(stdout);
+
+    typedef int* matrixPtr;
+    matrixPtr* matrix = new matrixPtr[r];
+    for (int i = 0; i < r; i++)
     {
-       printf("Program operation failed! \n");
+        matrix[i] = new int[c];
     }
-    mat = matrix;
-    for (int i = 0; i < c; i++)
-    {
-        mat[i] = (int*)malloc(sizeof(int) * c);
-        if (mat[i] == NULL)
-        {
-            printf("Program operation failed! \n");
-        }
-        mat[i] = matrix[i];
+
+    
+
+ //   int** matTmp = (int**)malloc(sizeof(int) * r);
+ //   if (matTmp == NULL)
+ //   {
+ //      printf("Program operation failed! \n");
+ //   }
+ //   matTmp = matrixPtr;
+ //   for (int i = 0; i < c; i++)
+ //   {
+ //       int* matRowTmp = (int*)malloc(sizeof(int) * c);
+ //       if (matRowTmp == NULL)
+ //       {
+ //           printf("Program operation failed! \n");
+ //       }
+ //       matRowTmp = matRow;
+//        matrix[i] = matRow;
         
-    }
+  //  }
    
     for (int i = 0; i < r; i++)
      {
         for (int j = 0; j < c; j++)
         {
-           scanf("%d", &matrix[i][j]);          
+           scanf("%d", &matrix[i][j]);    
         }                         
      }
+    
 
      return matrix;
 }
