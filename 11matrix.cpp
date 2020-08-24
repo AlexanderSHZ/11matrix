@@ -1,86 +1,30 @@
-﻿#include <iostream>
+﻿#include "Header.h"
 
-#include <iomanip>
-using namespace std;
-
-#pragma warning(disable : 4996)
-
-int** createArray(int rows, int column, int** arrayPtr);    
-
-int** fillArray(int rows, int column, int** arrayPtr);      
-
-int print(int r, int c, int** arrayPtr);                    
 
 
 int main()
 {
-    int rows, column;
-    int** arrayPtr = NULL;
+    Array ArrayElements;
     
     printf("Enter number of rows \n");
-    scanf("%d", &rows);
+    scanf("%d", &ArrayElements.rows);
     printf("Enter number of columns \n");
-    scanf("%d", &column);
+    scanf("%d", &ArrayElements.column);
+    printf("Enter number of depth \n");
+    scanf("%d", &ArrayElements.depth);
  
-    arrayPtr = createArray(rows, column, arrayPtr);      //Выделение места под массив массивов.
+    ArrayElements = createArray(ArrayElements);      //Выделение места под массив массивов.
 
     printf("Enter numbers to the massive \n");
 
-    fillArray(rows, column, arrayPtr);                   //Заполнение массива.
+    fillArray(ArrayElements);                   //Заполнение массива.
 
-    print(rows, column, arrayPtr);                       //Вывод массива на консоль.
+   // print(ArrayElements);                       //Вывод массива на консоль.
    
-    free(arrayPtr);
-   
-    return 0;
-}
-
-int** createArray(int rows, int column, int** arrayPtr)
-{  
-
-    arrayPtr = (int**)malloc(sizeof(int*) * rows);
-    if (arrayPtr == NULL)
-    {
-
-    }
-   
-    for (int i = 0; i < rows; i++)
-    {
-        arrayPtr[i] = (int*)malloc(sizeof(int) * column);
-       
-        if (arrayPtr[i] == NULL)
-        {
-           
-        }
-    }
-
-     return arrayPtr;
-}
-int** fillArray(int rows, int column, int** arrayPtr)
-{
-    fflush(stdout);
-
-    for (int i = 0; i < rows; i++)
-    {
-        for (int j = 0; j < column; j++)
-        {
-           cin >> arrayPtr[i][j];
-        }
-    }
-    return arrayPtr;
-}
-
-int print(int rows, int column, int** arrayPtr)
-{
-    for (int i = 0; i < rows; i++)
-    {
-        cout << "row["<< setw(3) << i << "]" ;
-
-        for (int j = 0; j < column; j++)
-        {      
-            cout << setw(6) << arrayPtr[i][j];
-        }
-        printf("\n");
-    }
+    int i = 0;
+    cin >> i;
+    
+    freeMemory(ArrayElements);
+    cin >> i;
     return 0;
 }
