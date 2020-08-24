@@ -17,6 +17,6 @@ int print(struct Array ArrayElements);
 
 struct Array
 {
-    int rows, column, depth;
+    int rows, column, depth, arrayLength;
     int*** arrayPtr = NULL;
 };
